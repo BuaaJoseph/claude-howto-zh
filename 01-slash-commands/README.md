@@ -7,31 +7,28 @@
 
 ## Overview
 
-Slash commands are tools that control Claude's behavior during an interactive session. They enable teams to standardize frequently-used prompts and workflows, and come in several types with different capabilities.
+Slash commands are shortcuts that control Claude's behavior during an interactive session. They come in several types:
 
-## Types of Slash Commands
+- **Built-in commands**: Provided by Claude Code (`/help`, `/clear`, `/model`)
+- **Skills**: User-defined commands created as `SKILL.md` files (`/optimize`, `/pr`)
+- **Plugin commands**: Commands from installed plugins (`/frontend-design:frontend-design`)
+- **MCP prompts**: Commands from MCP servers (`/mcp__github__list_prs`)
 
-| Type | Description | Example |
-|------|-------------|---------|
-| **Built-in** | Commands provided by Claude Code | `/help`, `/clear`, `/model` |
-| **Custom** | User-defined Markdown files | `/optimize`, `/pr` |
-| **Plugin** | Commands from installed plugins | `/frontend-design:frontend-design` |
-| **MCP** | Commands from MCP servers | `/mcp__github__list_prs` |
+> **Note**: Custom slash commands have been merged into skills. Files in `.claude/commands/` still work, but skills (`.claude/skills/`) are now the recommended approach. Both create `/command-name` shortcuts. See the [Skills Guide](../03-skills/) for the full reference.
 
 ## Built-in Commands Reference
 
-Claude Code provides these built-in slash commands:
+Built-in commands are shortcuts for common actions. Type `/` in Claude Code to see the full list, or type `/` followed by any letters to filter.
 
 | Command | Purpose |
 |---------|---------|
 | `/add-dir` | Add additional working directories |
 | `/agents` | Manage custom AI subagents for specialized tasks |
-| `/bashes` | List and manage background tasks |
-| `/bug` | Report bugs (sends conversation to Anthropic) |
 | `/clear` | Clear conversation history |
 | `/compact [instructions]` | Compact conversation with optional focus instructions |
 | `/config` | Open the Settings interface (Config tab) |
 | `/context` | Visualize current context usage as a colored grid |
+| `/copy` | Copy the last assistant response to clipboard |
 | `/cost` | Show token usage statistics |
 | `/doctor` | Checks the health of your Claude Code installation |
 | `/exit` | Exit the REPL |
@@ -46,14 +43,13 @@ Claude Code provides these built-in slash commands:
 | `/mcp` | Manage MCP server connections and OAuth authentication |
 | `/memory` | Edit `CLAUDE.md` memory files |
 | `/model` | Select or change the AI model |
-| `/plan` | Enter plan mode directly from the prompt |
-| `/remote-env` | Configure remote session environment (claude.ai subscribers) |
-| `/output-style [style]` | Set the output style directly or from a selection menu |
 | `/permissions` | View or update permissions |
+| `/plan` | Enter plan mode directly from the prompt |
 | `/plugin` | Manage Claude Code plugins |
 | `/pr-comments` | View pull request comments |
 | `/privacy-settings` | View and update your privacy settings |
 | `/release-notes` | View release notes |
+| `/remote-env` | Configure remote session environment (claude.ai subscribers) |
 | `/rename <name>` | Rename the current session |
 | `/resume [session]` | Resume a conversation by ID or name |
 | `/review` | Request code review |
@@ -63,69 +59,128 @@ Claude Code provides these built-in slash commands:
 | `/stats` | Visualize daily usage, session history, streaks, and model preferences |
 | `/status` | Open the Settings interface (Status tab) |
 | `/statusline` | Set up Claude Code's status line UI |
+| `/tasks` | List and manage background tasks |
 | `/teleport` | Resume remote session from claude.ai by session ID |
 | `/terminal-setup` | Install Shift+Enter key binding for newlines |
+| `/theme` | Change the color theme |
 | `/todos` | List current TODO items |
 | `/usage` | Show plan usage limits and rate limit status |
 | `/vim` | Enter vim mode for alternating insert and command modes |
 
-## Custom Slash Commands
+## Custom Commands (Now Skills)
 
-Custom slash commands allow you to define frequently used prompts as Markdown files that Claude Code can execute.
+Custom slash commands have been **merged into skills**. Both approaches create commands you can invoke with `/command-name`:
 
-### File Locations
+| Approach | Location | Status |
+|----------|----------|--------|
+| **Skills (Recommended)** | `.claude/skills/<name>/SKILL.md` | Current standard |
+| **Legacy Commands** | `.claude/commands/<name>.md` | Still works |
 
-| Location | Scope | Label in `/help` | Use Case |
-|----------|-------|------------------|----------|
-| `.claude/commands/` | Project-specific | `(project)` | Team workflows, shared standards |
-| `~/.claude/commands/` | Personal | `(user)` | Personal shortcuts across projects |
+If a skill and a command share the same name, the **skill takes precedence**.
 
-**Priority:** Project commands take precedence over personal commands with the same name.
+### Migration Path
 
-### Namespacing with Subdirectories
+Your existing `.claude/commands/` files continue to work without changes. To migrate to skills:
 
-Use subdirectories to group related commands:
-
+**Before (Command):**
 ```
-.claude/commands/
-├── frontend/
-│   └── component.md    → /component (project:frontend)
-├── deploy/
-│   ├── production.md   → /production (project:deploy)
-│   └── staging.md      → /staging (project:deploy)
-└── optimize.md         → /optimize (project)
+.claude/commands/optimize.md
 ```
+
+**After (Skill):**
+```
+.claude/skills/optimize/SKILL.md
+```
+
+### Why Skills?
+
+Skills offer additional features over legacy commands:
+
+- **Directory structure**: Bundle scripts, templates, and reference files
+- **Auto-invocation**: Claude can trigger skills automatically when relevant
+- **Invocation control**: Choose whether users, Claude, or both can invoke
+- **Subagent execution**: Run skills in isolated contexts with `context: fork`
+- **Progressive disclosure**: Load additional files only when needed
+
+### Creating a Custom Command as a Skill
+
+Create a directory with a `SKILL.md` file:
+
+```bash
+mkdir -p .claude/skills/my-command
+```
+
+**File:** `.claude/skills/my-command/SKILL.md`
+
+```yaml
+---
+name: my-command
+description: What this command does and when to use it
+---
+
+# My Command
+
+Instructions for Claude to follow when this command is invoked.
+
+1. First step
+2. Second step
+3. Third step
+```
+
+### Frontmatter Reference
+
+| Field | Purpose | Default |
+|-------|---------|---------|
+| `name` | Command name (becomes `/name`) | Directory name |
+| `description` | Brief description (helps Claude know when to use it) | First paragraph |
+| `argument-hint` | Expected arguments for auto-completion | None |
+| `allowed-tools` | Tools the command can use without permission | Inherits |
+| `model` | Specific model to use | Inherits |
+| `disable-model-invocation` | If `true`, only user can invoke (not Claude) | `false` |
+| `user-invocable` | If `false`, hide from `/` menu | `true` |
+| `context` | Set to `fork` to run in isolated subagent | None |
+| `agent` | Agent type when using `context: fork` | `general-purpose` |
+| `hooks` | Skill-scoped hooks (PreToolUse, PostToolUse, Stop) | None |
 
 ### Arguments
 
-Commands can receive arguments in two ways:
+Commands can receive arguments:
 
 **All arguments with `$ARGUMENTS`:**
 
-```markdown
-# .claude/commands/fix-issue.md
+```yaml
+---
+name: fix-issue
+description: Fix a GitHub issue by number
+---
+
 Fix issue #$ARGUMENTS following our coding standards
 ```
 
-Usage: `/fix-issue 123 high-priority` → `$ARGUMENTS` becomes "123 high-priority"
+Usage: `/fix-issue 123` → `$ARGUMENTS` becomes "123"
 
-**Individual arguments with `$1`, `$2`, etc.:**
+**Individual arguments with `$0`, `$1`, etc.:**
 
-```markdown
-# .claude/commands/review-pr.md
-Review PR #$1 with priority $2 and assign to $3
+```yaml
+---
+name: review-pr
+description: Review a PR with priority
+---
+
+Review PR #$0 with priority $1
 ```
 
-Usage: `/review-pr 456 high alice` → `$1`="456", `$2`="high", `$3`="alice"
+Usage: `/review-pr 456 high` → `$0`="456", `$1`="high"
 
-### Bash Command Execution
+### Dynamic Context with Shell Commands
 
-Execute bash commands before the slash command runs using the `!` prefix:
+Execute bash commands before the prompt using `!`command``:
 
-```markdown
+```yaml
 ---
-allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*)
-description: Create a git commit
+name: commit
+description: Create a git commit with context
+allowed-tools: Bash(git *)
 ---
 
 ## Context
@@ -133,7 +188,7 @@ description: Create a git commit
 - Current git status: !`git status`
 - Current git diff: !`git diff HEAD`
 - Current branch: !`git branch --show-current`
-- Recent commits: !`git log --oneline -10`
+- Recent commits: !`git log --oneline -5`
 
 ## Your task
 
@@ -142,56 +197,16 @@ Based on the above changes, create a single git commit.
 
 ### File References
 
-Include file contents in commands using the `@` prefix:
+Include file contents using `@`:
 
 ```markdown
-# Reference a specific file
 Review the implementation in @src/utils/helpers.js
-
-# Reference multiple files
 Compare @src/old-version.js with @src/new-version.js
 ```
 
-### Thinking Mode
-
-Slash commands can trigger extended thinking by including extended thinking keywords in the command content.
-
-## Frontmatter
-
-Command files support YAML frontmatter for configuration:
-
-```markdown
----
-allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*)
-argument-hint: [message]
-description: Create a git commit
-model: claude-3-5-haiku-20241022
-hooks:
-  PreToolUse:
-    - matcher: "Bash"
-      hooks:
-        - type: command
-          command: "./scripts/validate.sh"
-          once: true
----
-
-Create a git commit with message: $ARGUMENTS
-```
-
-### Frontmatter Fields
-
-| Field | Purpose | Default |
-|-------|---------|---------|
-| `allowed-tools` | List of tools the command can use | Inherits from conversation |
-| `argument-hint` | Expected arguments for auto-completion | None |
-| `description` | Brief description of the command | Uses first line from prompt |
-| `model` | Specific model to use | Inherits from conversation |
-| `hooks` | Component-scoped hooks (PreToolUse, PostToolUse, Stop) | None |
-| `disable-model-invocation` | Prevent Skill tool from calling this | `false` |
-
 ## Plugin Commands
 
-Plugins can provide custom slash commands that integrate with Claude Code:
+Plugins can provide custom commands:
 
 ```
 /plugin-name:command-name
@@ -203,10 +218,9 @@ Or simply `/command-name` when there are no naming conflicts.
 ```bash
 /frontend-design:frontend-design
 /commit-commands:commit
-/code-review:code-review
 ```
 
-## MCP Slash Commands
+## MCP Prompts as Commands
 
 MCP servers can expose prompts as slash commands:
 
@@ -221,85 +235,32 @@ MCP servers can expose prompts as slash commands:
 /mcp__jira__create_issue "Bug title" high
 ```
 
-## MCP Permission Syntax
+### MCP Permission Syntax
 
-Control MCP server access using permission syntax in settings:
+Control MCP server access in permissions:
 
-**Server-level permissions:**
 - `mcp__github` - Access entire GitHub MCP server
-- `mcp__github__*` - Wildcard access to all tools in GitHub server
+- `mcp__github__*` - Wildcard access to all tools
 - `mcp__github__get_issue` - Specific tool access
 
-**Usage in permissions:**
-```json
-{
-  "permissions": {
-    "blocked": ["mcp__github__*"],
-    "requireConfirmation": ["mcp__jira__create_issue"]
-  }
-}
-```
-
-This allows fine-grained control over which MCP tools Claude can use.
-
-## Skill Tool
-
-Claude can programmatically invoke custom slash commands using the Skill tool.
-
-### Enabling Programmatic Invocation
-
-Reference the command in your prompt or `CLAUDE.md`:
-
-```markdown
-> Run /write-unit-test when you are about to start writing tests.
-```
-
-### Disabling for Specific Commands
-
-Use the `disable-model-invocation` frontmatter field:
-
-```markdown
----
-disable-model-invocation: true
----
-```
-
-Or disable via permissions:
-```
-/permissions
-# Add to deny rules: Skill
-```
-
-### Character Budget
-
-- **Default limit:** 15,000 characters
-- **Custom limit:** Set via `SLASH_COMMAND_TOOL_CHAR_BUDGET` environment variable
-
-## Skills vs Slash Commands
-
-| Aspect | Slash Commands | Skills |
-|--------|----------------|--------|
-| **Best for** | Quick, frequently used prompts | Comprehensive capabilities with structure |
-| **Files** | Single `.md` file | Directory with `SKILL.md` + resources |
-| **Invocation** | Explicit (`/command`) | Automatic (context-based) |
-| **Complexity** | Simple prompts | Complex workflows with multiple steps |
-
-**Use slash commands** when you invoke the same prompt repeatedly and it fits in a single file.
-
-**Use skills** when Claude should discover the capability automatically or multiple files/scripts are needed.
-
-## Architecture
+## Command Architecture
 
 ```mermaid
 graph TD
-    A["User Input: /command-name"] -->|Triggers| B["Search .claude/commands/"]
-    B -->|Finds| C["command-name.md"]
-    C -->|Loads| D["Markdown Content"]
-    D -->|Executes| E["Claude Processes Prompt"]
-    E -->|Returns| F["Result in Context"]
+    A["User Input: /command-name"] --> B{"Command Type?"}
+    B -->|Built-in| C["Execute Built-in"]
+    B -->|Skill| D["Load SKILL.md"]
+    B -->|Plugin| E["Load Plugin Command"]
+    B -->|MCP| F["Execute MCP Prompt"]
+
+    D --> G["Parse Frontmatter"]
+    G --> H["Substitute Variables"]
+    H --> I["Execute Shell Commands"]
+    I --> J["Send to Claude"]
+    J --> K["Return Results"]
 ```
 
-## Command Lifecycle Diagram
+## Command Lifecycle
 
 ```mermaid
 sequenceDiagram
@@ -309,19 +270,22 @@ sequenceDiagram
     participant CLI as Shell/Bash
 
     User->>Claude: Types /optimize
-    Claude->>FS: Searches .claude/commands/
-    FS-->>Claude: Returns optimize.md
-    Claude->>Claude: Loads Markdown content
-    Claude->>User: Displays prompt context
-    User->>Claude: Provides code to analyze
-    Claude->>CLI: (May execute scripts)
-    CLI-->>Claude: Results
-    Claude->>User: Returns analysis
+    Claude->>FS: Searches .claude/skills/ and .claude/commands/
+    FS-->>Claude: Returns optimize/SKILL.md
+    Claude->>Claude: Parses frontmatter
+    Claude->>CLI: Executes !`command` substitutions
+    CLI-->>Claude: Command outputs
+    Claude->>Claude: Substitutes $ARGUMENTS
+    Claude->>User: Processes prompt
+    Claude->>User: Returns results
 ```
 
-## Available Commands in This Folder (8 Commands)
+## Available Commands in This Folder
+
+These example commands can be installed as skills or legacy commands.
 
 ### 1. `/optimize` - Code Optimization
+
 Analyzes code for performance issues, memory leaks, and optimization opportunities.
 
 **Usage:**
@@ -330,33 +294,20 @@ Analyzes code for performance issues, memory leaks, and optimization opportuniti
 [Paste your code]
 ```
 
-**Reviews for:**
-- Performance bottlenecks (O(n²) operations)
-- Memory leaks
-- Algorithm improvements
-- Caching opportunities
-- Concurrency issues
-
 ### 2. `/pr` - Pull Request Preparation
-Guides you through PR preparation checklist including linting, testing, and commit message formatting.
+
+Guides through PR preparation checklist including linting, testing, and commit formatting.
 
 **Usage:**
 ```
 /pr
 ```
 
-**Checklist includes:**
-- Running linting
-- Running tests
-- Reviewing git diff
-- Staging changes
-- Creating conventional commit messages
-- Generating PR summary
-
-**Screenshot**
+**Screenshot:**
 ![/pr](pr-slash-command.png)
 
 ### 3. `/generate-api-docs` - API Documentation Generator
+
 Generates comprehensive API documentation from source code.
 
 **Usage:**
@@ -364,15 +315,8 @@ Generates comprehensive API documentation from source code.
 /generate-api-docs
 ```
 
-**Features:**
-- Scans all files in `/src/api/`
-- Extracts function signatures and JSDoc comments
-- Organizes by endpoint/module
-- Creates markdown with examples
-- Includes request/response schemas
-- Adds error documentation
-
 ### 4. `/commit` - Git Commit with Context
+
 Creates a git commit with dynamic context from your repository.
 
 **Usage:**
@@ -380,52 +324,32 @@ Creates a git commit with dynamic context from your repository.
 /commit [optional message]
 ```
 
-**Features:**
-- Automatically includes git status, diff, and recent commits
-- Uses `allowed-tools` for git operations
-- Supports optional commit message argument
-
 ### 5. `/push-all` - Stage, Commit, and Push
-Stages all changes, creates a commit, and pushes to remote with comprehensive safety checks.
+
+Stages all changes, creates a commit, and pushes to remote with safety checks.
 
 **Usage:**
 ```
 /push-all
 ```
 
-**Workflow:**
-1. Analyzes changes (git status, diff, log)
-2. Runs safety checks for secrets, API keys, large files, build artifacts
-3. Validates API keys are placeholders (not real credentials)
-4. Presents summary and requests confirmation
-5. Stages all changes and generates conventional commit message
-6. Commits and pushes to remote
-
 **Safety Checks:**
-- Secrets: `.env*`, `*.key`, `*.pem`, `credentials.json`, etc.
-- API Keys: Detects real keys vs. placeholders like `your-api-key-here`
+- Secrets: `.env*`, `*.key`, `*.pem`, `credentials.json`
+- API Keys: Detects real keys vs. placeholders
 - Large files: `>10MB` without Git LFS
-- Build artifacts: `node_modules/`, `dist/`, `__pycache__/`, etc.
-
-**Caution:** Use only when confident all changes belong together.
+- Build artifacts: `node_modules/`, `dist/`, `__pycache__/`
 
 ### 6. `/doc-refactor` - Documentation Restructuring
-Restructures project documentation for clarity and accessibility, adapting to project type.
+
+Restructures project documentation for clarity and accessibility.
 
 **Usage:**
 ```
 /doc-refactor
 ```
 
-**Features:**
-- Analyzes project type (library, API, web app, CLI, microservices)
-- Centralizes documentation in `docs/` folder
-- Streamlines root README as entry point
-- Creates component-level documentation
-- Generates guides based on project needs (User Guide, API Docs, Development Guide)
-- Uses Mermaid for all diagrams
-
 ### 7. `/setup-ci-cd` - CI/CD Pipeline Setup
+
 Implements pre-commit hooks and GitHub Actions for quality assurance.
 
 **Usage:**
@@ -433,17 +357,8 @@ Implements pre-commit hooks and GitHub Actions for quality assurance.
 /setup-ci-cd
 ```
 
-**Features:**
-- Detects project language(s), framework, and build system
-- Configures pre-commit hooks with language-specific tools:
-  - Formatting (Prettier, Black, gofmt, rustfmt)
-  - Linting (ESLint, Ruff, golangci-lint, Clippy)
-  - Security scanning (Bandit, gosec, cargo-audit)
-  - Type checking (TypeScript, mypy)
-- Creates GitHub Actions workflows in `.github/workflows/`
-- Verifies pipeline with local tests
-
 ### 8. `/unit-test-expand` - Test Coverage Expansion
+
 Increases test coverage by targeting untested branches and edge cases.
 
 **Usage:**
@@ -451,91 +366,88 @@ Increases test coverage by targeting untested branches and edge cases.
 /unit-test-expand
 ```
 
-**Features:**
-- Analyzes coverage to identify untested branches and low-coverage areas
-- Identifies gaps: error paths, boundary conditions, null/empty inputs
-- Generates tests using project's framework (Jest, pytest, Go testing, Rust)
-- Targets specific scenarios:
-  - Error handling and exceptions
-  - Boundary values (min/max, empty, null)
-  - Edge cases and corner cases
-  - State transitions and side effects
-- Verifies coverage improvement
-
 ## Installation
 
-### For Project-wide Use (Team)
+### As Skills (Recommended)
 
-Copy these files to your project's `.claude/commands/` directory:
+Copy to your skills directory:
 
 ```bash
-# Create commands directory if it doesn't exist
-mkdir -p .claude/commands
+# Create skills directory
+mkdir -p .claude/skills
 
-# Copy command files
-cp 01-slash-commands/*.md .claude/commands/
+# For each command file, create a skill directory
+for cmd in optimize pr commit; do
+  mkdir -p .claude/skills/$cmd
+  cp 01-slash-commands/$cmd.md .claude/skills/$cmd/SKILL.md
+done
 ```
 
-### For Personal Use
+### As Legacy Commands
 
-Copy to your personal Claude commands directory:
+Copy to your commands directory:
 
 ```bash
-# Create personal commands directory
-mkdir -p ~/.claude/commands
+# Project-wide (team)
+mkdir -p .claude/commands
+cp 01-slash-commands/*.md .claude/commands/
 
-# Copy command files
+# Personal use
+mkdir -p ~/.claude/commands
 cp 01-slash-commands/*.md ~/.claude/commands/
 ```
 
 ## Creating Your Own Commands
 
-### Basic Command Template
+### Skill Template (Recommended)
 
-Create a file `.claude/commands/my-command.md`:
+Create `.claude/skills/my-command/SKILL.md`:
 
-```markdown
+```yaml
 ---
-description: What this command does
+name: my-command
+description: What this command does. Use when [trigger conditions].
 argument-hint: [optional-args]
+allowed-tools: Bash(npm *), Read, Grep
 ---
 
 # Command Title
 
-Instructions for Claude:
+## Context
+
+- Current branch: !`git branch --show-current`
+- Related files: @package.json
+
+## Instructions
 
 1. First step
-2. Second step
+2. Second step with argument: $ARGUMENTS
 3. Third step
 
-Output format:
+## Output Format
+
 - How to format the response
 - What to include
 ```
 
-### Command with Full Frontmatter
+### User-Only Command (No Auto-Invocation)
 
-```markdown
+For commands with side effects that Claude shouldn't trigger automatically:
+
+```yaml
 ---
-allowed-tools: Bash(npm test:*), Bash(npm run lint:*)
-argument-hint: [--verbose] [--coverage]
-description: Run tests with optional coverage report
-model: claude-3-5-haiku-20241022
+name: deploy
+description: Deploy to production
+disable-model-invocation: true
+allowed-tools: Bash(npm *), Bash(git *)
 ---
 
-# Test Runner
+Deploy the application to production:
 
-Run the project tests with the following options:
-- Arguments provided: $ARGUMENTS
-
-## Context
-- Current branch: !`git branch --show-current`
-- Package.json scripts: @package.json
-
-## Steps
-1. Run `npm test`
-2. If --coverage flag provided, generate coverage report
-3. Summarize results and highlight any failures
+1. Run tests
+2. Build application
+3. Push to deployment target
+4. Verify deployment
 ```
 
 ## Best Practices
@@ -543,64 +455,47 @@ Run the project tests with the following options:
 | Do | Don't |
 |------|---------|
 | Use clear, action-oriented names | Create commands for one-time tasks |
-| Include `description` in frontmatter | Build complex logic in commands |
-| Keep commands focused on single task | Create redundant commands |
-| Version control project commands | Hardcode sensitive information |
-| Organize in subdirectories | Create long lists of commands |
-| Use `$ARGUMENTS` or `$1`, `$2` for dynamic input | Use abbreviated or cryptic wording |
+| Include `description` with trigger conditions | Build complex logic in commands |
+| Keep commands focused on single task | Hardcode sensitive information |
+| Use `disable-model-invocation` for side effects | Skip the description field |
 | Use `!` prefix for dynamic context | Assume Claude knows current state |
+| Organize related files in skill directories | Put everything in one file |
 
 ## Troubleshooting
 
 ### Command Not Found
 
-**Problem:** Claude doesn't recognize `/my-command`
-
 **Solutions:**
-- Check file is in `.claude/commands/` directory
-- Verify filename matches command name
+- Check file is in `.claude/skills/<name>/SKILL.md` or `.claude/commands/<name>.md`
+- Verify the `name` field in frontmatter matches expected command name
 - Restart Claude Code session
-- Check file has `.md` extension
+- Run `/help` to see available commands
 
 ### Command Not Executing as Expected
 
-**Problem:** Command loads but doesn't work correctly
-
 **Solutions:**
-- Review command prompt clarity
 - Add more specific instructions
-- Include examples in command file
-- Test with simple inputs first
+- Include examples in the skill file
 - Check `allowed-tools` if using bash commands
+- Test with simple inputs first
 
-### Personal vs Project Commands
+### Skill vs Command Conflict
 
-**When to use personal commands:**
-- Personal preferences/workflows
-- Not relevant to team
-- Experimental commands
-- Cross-project shortcuts
+If both exist with the same name, the **skill takes precedence**. Remove one or rename it.
 
-**When to use project commands:**
-- Team standards
-- Project-specific workflows
-- Shared conventions
-- Onboarding helpers
+## Related Guides
 
-## Related Concepts
-
-- **[Memory](../02-memory/)** - For persistent context
-- **[Skills](../03-skills/)** - For auto-invoked capabilities
-- **[Subagents](../04-subagents/)** - For complex, delegated tasks
-- **[Plugins](../07-plugins/)** - For bundled command collections
+- **[Skills](../03-skills/)** - Full reference for skills (auto-invoked capabilities)
+- **[Memory](../02-memory/)** - Persistent context with CLAUDE.md
+- **[Subagents](../04-subagents/)** - Delegated AI agents
+- **[Plugins](../07-plugins/)** - Bundled command collections
+- **[Hooks](../06-hooks/)** - Event-driven automation
 
 ## Additional Resources
 
-- [Official Slash Commands Documentation](https://code.claude.com/docs/en/slash-commands) - Complete reference
+- [Official Interactive Mode Documentation](https://code.claude.com/docs/en/interactive-mode) - Built-in commands reference
+- [Official Skills Documentation](https://code.claude.com/docs/en/skills) - Complete skills reference
 - [CLI Reference](https://code.claude.com/docs/en/cli-reference) - Command-line options
-- [Memory Guide](../02-memory/) - Persistent context
-- [Skills Guide](../03-skills/) - Auto-invoked capabilities
-- [Markdown Guide](https://www.markdownguide.org/) - Markdown syntax reference
 
 ---
 
