@@ -1,3 +1,5 @@
+# Claude How To 中文指南
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
   <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
@@ -6,264 +8,272 @@
 [![GitHub Stars](https://img.shields.io/github/stars/luongnv89/claude-howto?style=flat&color=gold)](https://github.com/luongnv89/claude-howto/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/luongnv89/claude-howto?style=flat)](https://github.com/luongnv89/claude-howto/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.2.0-brightgreen)](CHANGELOG.md)
+[![版本](https://img.shields.io/badge/version-2.2.0-brightgreen)](CHANGELOG.md)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1+-purple)](https://code.claude.com)
 
-# Master Claude Code in a Weekend
+# 一个周末掌握 Claude Code
 
-Go from typing `claude` to orchestrating agents, hooks, skills, and MCP servers — with visual tutorials, copy-paste templates, and a guided learning path.
+从只会输入 `claude` 到熟练编排 agents、hooks、skills 和 MCP 服务器——通过可视化教程、可直接复制的模板和循序渐进的学习路径。
 
-**[Get Started in 15 Minutes](#-get-started-in-15-minutes)** | **[Find Your Level](#-not-sure-where-to-start)** | **[Browse the Feature Catalog](CATALOG.md)**
-
----
-
-## Table of Contents
-
-- [The Problem](#the-problem)
-- [How Claude How To Fixes This](#how-claude-how-to-fixes-this)
-- [How It Works](#how-it-works)
-- [Not Sure Where to Start?](#-not-sure-where-to-start)
-- [Get Started in 15 Minutes](#-get-started-in-15-minutes)
-- [What Can You Build With This?](#what-can-you-build-with-this)
-- [FAQ](#faq)
-- [Contributing](#contributing)
-- [License](#license)
+**[15 分钟入门](#-15-minutes-get-started)** | **[找到你的起点](#-not-sure-where-to-start)** | **[浏览功能目录](CATALOG.md)**
 
 ---
 
-## The Problem
-
-You installed Claude Code. You ran a few prompts. Now what?
-
-- **The official docs describe features — but don't show you how to combine them.** You know slash commands exist, but not how to chain them with hooks, memory, and subagents into a workflow that actually saves hours.
-- **There's no clear learning path.** Should you learn MCP before hooks? Skills before subagents? You end up skimming everything and mastering nothing.
-- **Examples are too basic.** A "hello world" slash command doesn't help you build a production code review pipeline that uses memory, delegates to specialized agents, and runs security scans automatically.
-
-You're leaving 90% of Claude Code's power on the table — and you don't know what you don't know.
+> 📢 **中文适配说明**
+> 
+> 本项目是基于 [luongnv89/claude-howto](https://github.com/luongnv89/claude-howto) 的中文翻译版本，针对中文用户做了本地化适配。
+> 
+> 原文项目采用 MIT 许可证，允许自由使用和分发。
 
 ---
 
-## How Claude How To Fixes This
+## 目录
 
-This isn't another feature reference. It's a **structured, visual, example-driven guide** that teaches you to use every Claude Code feature with real-world templates you can copy into your project today.
+- [问题](#the-problem)
+- [Claude How To 如何解决](#how-claude-how-to-fixes-this)
+- [工作原理](#how-it-works)
+- [不确定从哪里开始？](#not-sure-where-to-start)
+- [15 分钟入门](#-15-minutes-get-started)
+- [你能用它做什么？](#what-can-you-build-with-this)
+- [常见问题](#faq)
+- [贡献指南](#contributing)
+- [许可证](#license)
 
-| | Official Docs | This Guide |
+---
+
+## 问题
+
+你安装了 Claude Code，运行了几个 prompt。然后呢？
+
+- **官方文档只描述功能，不教你如何组合使用。** 你知道有 slash 命令，但不知道如何把它们和 hooks、memory、subagents 串联成真正省时的工作流。
+- **没有清晰的学习路径。** 应该先学 MCP 还是 hooks？先学 Skills 还是 subagents？你最终只能泛泛浏览，什么都学不精。
+- **例子太简单。** 一个 "hello world" 的 slash 命令没法帮你构建一个生产级的代码审查 pipeline——需要用到 memory、委托给专业 agents、自动运行安全扫描。
+
+你把 Claude Code 90% 的能力闲置了——而且你不知道自己不知道什么。
+
+---
+
+## Claude How To 如何解决
+
+这不是又一份功能文档。它是一个**结构化、可视化、以例子驱动的指南**，教你在真实项目中立即使用每一个 Claude Code 功能。
+
+| | 官方文档 | 本指南 |
 |--|---------------|------------|
-| **Format** | Reference documentation | Visual tutorials with Mermaid diagrams |
-| **Depth** | Feature descriptions | How it works under the hood |
-| **Examples** | Basic snippets | Production-ready templates you use immediately |
-| **Structure** | Feature-organized | Progressive learning path (beginner to advanced) |
-| **Onboarding** | Self-directed | Guided roadmap with time estimates |
-| **Self-Assessment** | None | Interactive quizzes to find your gaps and build a personalized path |
+| **形式** | 参考文档 | 带 Mermaid 图的可视化教程 |
+| **深度** | 功能描述 | 底层原理讲解 |
+| **例子** | 基础代码片段 | 生产级模板，可直接复制使用 |
+| **结构** | 按功能分类 | 渐进式学习路径（入门到高级） |
+| **上手** | 自行摸索 | 带时间估计的指导路线 |
+| **自测** | 无 | 交互式测验，找出问题并定制学习路径 |
 
-### What you get:
+### 你将获得：
 
-- **10 tutorial modules** covering every Claude Code feature — from slash commands to custom agent teams
-- **Copy-paste configs** — slash commands, CLAUDE.md templates, hook scripts, MCP configs, subagent definitions, and full plugin bundles
-- **Mermaid diagrams** showing how each feature works internally, so you understand *why*, not just *how*
-- **A guided learning path** that takes you from beginner to power user in 11-13 hours
-- **Built-in self-assessment** — run `/self-assessment` or `/lesson-quiz hooks` directly in Claude Code to identify gaps
+- **10 个教程模块**——涵盖所有 Claude Code 功能，从 slash 命令到自定义 agent 团队
+- **即用型配置**——slash 命令、CLAUDE.md 模板、hook 脚本、MCP 配置、subagent 定义和完整插件包
+- **Mermaid 图表**——展示每个功能的内部原理，让你理解 *为什么*，而不仅是 *怎么做*
+- **指导性学习路径**——11-13 小时从入门到精通
+- **内置自测**——直接在 Claude Code 中运行 `/self-assessment` 或 `/lesson-quiz` 找出知识盲区
 
-**[Start the Learning Path  ->](LEARNING-ROADMAP.md)**
-
----
-
-## How It Works
-
-### 1. Find your level
-
-Take the [self-assessment quiz](LEARNING-ROADMAP.md#-find-your-level) or run `/self-assessment` in Claude Code. Get a personalized roadmap based on what you already know.
-
-### 2. Follow the guided path
-
-Work through 10 modules in order — each builds on the last. Copy templates directly into your project as you learn.
-
-### 3. Combine features into workflows
-
-The real power is in combining features. Learn to wire slash commands + memory + subagents + hooks into automated pipelines that handle code reviews, deployments, and documentation generation.
-
-### 4. Test your understanding
-
-Run `/lesson-quiz [topic]` after each module. The quiz pinpoints what you missed so you can fill gaps fast.
-
-**[Get Started in 15 Minutes](#-get-started-in-15-minutes)**
+**[开始学习路径 ->](LEARNING-ROADMAP.md)**
 
 ---
 
-## Trusted by 5,900+ Developers
+## 工作原理
 
-- **5,900+ GitHub stars** from developers who use Claude Code daily
-- **690+ forks** — teams adapting this guide for their own workflows
-- **Actively maintained** — synced with every Claude Code release (latest: v2.2.0, March 2026)
-- **Community-driven** — contributions from developers who share their real-world configurations
+### 1. 定位你的水平
 
-[![Star History Chart](https://api.star-history.com/svg?repos=luongnv89/claude-howto&type=Date)](https://star-history.com/#luongnv89/claude-howto&Date)
+做[自测题](LEARNING-ROADMAP.md#-find-your-level)或在 Claude Code 中运行 `/self-assessment`，根据你已掌握的知识获得定制化学习路线。
+
+### 2. 跟随指导路径
+
+按顺序完成 10 个模块——每个都建立在前一个的基础上。学习时直接把模板复制到你的项目中。
+
+### 3. 将功能组合成工作流
+
+真正的力量在于组合功能。学习将 slash commands + memory + subagents + hooks 接线成自动化 pipeline，处理代码审查、部署和文档生成。
+
+### 4. 检验你的理解
+
+每个模块后运行 `/lesson-quiz [topic]`。测验会指出你遗漏的内容，让你快速填补空白。
+
+**[15 分钟入门](#-15-minutes-get-started)**
 
 ---
 
-## Not Sure Where to Start?
+## 被 5,900+ 开发者验证
 
-Take the self-assessment or pick your level:
+- **5,900+ GitHub stars**——来自每天使用 Claude Code 的开发者
+- **690+ forks**——团队正在适配用于自己的工作流
+- **积极维护**——与每个 Claude Code 版本同步（最新：v2.2.0，2026 年 3 月）
+- **社区驱动**——开发者贡献的真实配置
 
-| Level | You can... | Start here | Time |
+[![Star 历史图表](https://api.star-history.com/svg?repos=luongnv89/claude-howto&type=Date)](https://star-history.com/#luongnv89/claude-howto&Date)
+
+---
+
+## 不确定从哪里开始？
+
+做自测题或选择你的水平：
+
+| 水平 | 你能... | 从这里开始 | 时间 |
 |-------|-----------|------------|------|
-| **Beginner** | Start Claude Code and chat | [Slash Commands](01-slash-commands/) | ~2.5 hours |
-| **Intermediate** | Use CLAUDE.md and custom commands | [Skills](03-skills/) | ~3.5 hours |
-| **Advanced** | Configure MCP servers and hooks | [Advanced Features](09-advanced-features/) | ~5 hours |
+| **入门** | 启动 Claude Code 并聊天 | [Slash 命令](01-slash-commands/) | ~2.5 小时 |
+| **中级** | 使用 CLAUDE.md 和自定义命令 | [Skills](03-skills/) | ~3.5 小时 |
+| **高级** | 配置 MCP 服务器和 hooks | [高级功能](09-advanced-features/) | ~5 小时 |
 
-**Full learning path with all 10 modules:**
+**完整学习路径（10 个模块）：**
 
-| Order | Module | Level | Time |
+| 序号 | 模块 | 水平 | 时间 |
 |-------|--------|-------|------|
-| 1 | [Slash Commands](01-slash-commands/) | Beginner | 30 min |
-| 2 | [Memory](02-memory/) | Beginner+ | 45 min |
-| 3 | [Checkpoints](08-checkpoints/) | Intermediate | 45 min |
-| 4 | [CLI Basics](10-cli/) | Beginner+ | 30 min |
-| 5 | [Skills](03-skills/) | Intermediate | 1 hour |
-| 6 | [Hooks](06-hooks/) | Intermediate | 1 hour |
-| 7 | [MCP](05-mcp/) | Intermediate+ | 1 hour |
-| 8 | [Subagents](04-subagents/) | Intermediate+ | 1.5 hours |
-| 9 | [Advanced Features](09-advanced-features/) | Advanced | 2-3 hours |
-| 10 | [Plugins](07-plugins/) | Advanced | 2 hours |
+| 1 | [Slash 命令](01-slash-commands/) | 入门 | 30 分钟 |
+| 2 | [Memory](02-memory/) | 入门+ | 45 分钟 |
+| 3 | [Checkpoints](08-checkpoints/) | 中级 | 45 分钟 |
+| 4 | [CLI 基础](10-cli/) | 入门+ | 30 分钟 |
+| 5 | [Skills](03-skills/) | 中级 | 1 小时 |
+| 6 | [Hooks](06-hooks/) | 中级 | 1 小时 |
+| 7 | [MCP](05-mcp/) | 中级+ | 1 小时 |
+| 8 | [Subagents](04-subagents/) | 中级+ | 1.5 小时 |
+| 9 | [高级功能](09-advanced-features/) | 高级 | 2-3 小时 |
+| 10 | [Plugins](07-plugins/) | 高级 | 2 小时 |
 
-**[Complete Learning Roadmap ->](LEARNING-ROADMAP.md)**
+**[完整学习路线图 ->](LEARNING-ROADMAP.md)**
 
 ---
 
-## Get Started in 15 Minutes
+## 15 分钟入门
 
 ```bash
-# 1. Clone the guide
-git clone https://github.com/luongnv89/claude-howto.git
-cd claude-howto
+# 1. 克隆本指南
+git clone https://github.com/BuaaJoseph/claude-howto-zh.git
+cd claude-howto-zh
 
-# 2. Copy your first slash command
+# 2. 复制你的第一个 slash 命令
 mkdir -p /path/to/your-project/.claude/commands
 cp 01-slash-commands/optimize.md /path/to/your-project/.claude/commands/
 
-# 3. Try it — in Claude Code, type:
+# 3. 试试看——在 Claude Code 中输入：
 # /optimize
 
-# 4. Ready for more? Set up project memory:
+# 4. 还想学更多？设置项目 memory：
 cp 02-memory/project-CLAUDE.md /path/to/your-project/CLAUDE.md
 
-# 5. Install a skill:
+# 5. 安装一个 skill：
 cp -r 03-skills/code-review ~/.claude/skills/
 ```
 
-Want the full setup? Here's the **1-hour essential setup**:
+想要完整配置？这是**1 小时速成配置**：
 
 ```bash
-# Slash commands (15 min)
+# Slash 命令（15 分钟）
 cp 01-slash-commands/*.md .claude/commands/
 
-# Project memory (15 min)
+# 项目 memory（15 分钟）
 cp 02-memory/project-CLAUDE.md ./CLAUDE.md
 
-# Install a skill (15 min)
+# 安装一个 skill（15 分钟）
 cp -r 03-skills/code-review ~/.claude/skills/
 
-# Weekend goal: add hooks, subagents, MCP, and plugins
-# Follow the learning path for guided setup
+# 周末目标：添加 hooks、subagents、MCP 和插件
+# 按照学习路径指引进行设置
 ```
 
-**[View the Full Installation Reference](#installation-quick-reference)**
+**[查看完整安装参考](#installation-quick-reference)**
 
 ---
 
-## What Can You Build With This?
+## 你能用它做什么？
 
-| Use Case | Features You'll Combine |
+| 使用场景 | 需要组合的功能 |
 |----------|------------------------|
-| **Automated Code Review** | Slash Commands + Subagents + Memory + MCP |
-| **Team Onboarding** | Memory + Slash Commands + Plugins |
-| **CI/CD Automation** | CLI Reference + Hooks + Background Tasks |
-| **Documentation Generation** | Skills + Subagents + Plugins |
-| **Security Audits** | Subagents + Skills + Hooks (read-only mode) |
-| **DevOps Pipelines** | Plugins + MCP + Hooks + Background Tasks |
-| **Complex Refactoring** | Checkpoints + Planning Mode + Hooks |
+| **自动化代码审查** | Slash Commands + Subagents + Memory + MCP |
+| **团队入职引导** | Memory + Slash Commands + Plugins |
+| **CI/CD 自动化** | CLI Reference + Hooks + 后台任务 |
+| **文档生成** | Skills + Subagents + Plugins |
+| **安全审计** | Subagents + Skills + Hooks（只读模式）|
+| **DevOps 流水线** | Plugins + MCP + Hooks + 后台任务 |
+| **复杂重构** | Checkpoints + 规划模式 + Hooks |
 
 ---
 
-## FAQ
+## 常见问题
 
-**Is this free?**
-Yes. MIT licensed, free forever. Use it in personal projects, at work, in your team — no restrictions beyond including the license notice.
+**这是免费的吗？**
+是的。MIT 许可证，永久免费。个人项目、工作、团队都可以用——只需包含许可证声明。
 
-**Is this maintained?**
-Actively. The guide is synced with every Claude Code release. Current version: v2.2.0 (March 2026), compatible with Claude Code 2.1+.
+**有维护吗？**
+积极维护。指南与每个 Claude Code 版本同步。当前版本：v2.2.0（2026 年 3 月），兼容 Claude Code 2.1+。
 
-**How is this different from the official docs?**
-The official docs are a feature reference. This guide is a tutorial with diagrams, production-ready templates, and a progressive learning path. They complement each other — start here to learn, reference the docs when you need specifics.
+**这和官方文档有什么区别？**
+官方文档是功能参考。本指南是带图表、生产级模板和渐进式学习路径的教程。两者互补——从这里开始学习，需要具体细节时查阅文档。
 
-**How long does it take to go through everything?**
-11-13 hours for the full path. But you'll get immediate value in 15 minutes — just copy a slash command template and try it.
+**全部学完要多久？**
+完整路径 11-13 小时。但 15 分钟就能获得即时价值——只需复制一个 slash 命令模板并尝试。
 
-**Can I use this with Claude Sonnet / Haiku / Opus?**
-Yes. All templates work with Claude Sonnet 4.6, Claude Opus 4.6, and Claude Haiku 4.5.
+**可以配合 Claude Sonnet / Haiku / Opus 使用吗？**
+可以。所有模板都支持 Claude Sonnet 4.6、Claude Opus 4.6 和 Claude Haiku 4.5。
 
-**Can I contribute?**
-Absolutely. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. We welcome new examples, bug fixes, documentation improvements, and community templates.
+**可以贡献吗？**
+当然可以。详见 [CONTRIBUTING.md](CONTRIBUTING.md)。欢迎新例子、bug 修复、文档改进和社区模板。
 
-**Can I read this offline?**
-Yes. Run `uv run scripts/build_epub.py` to generate an EPUB ebook with all content and rendered diagrams.
+**可以离线阅读吗？**
+可以。运行 `uv run scripts/build_epub.py` 生成包含所有内容和渲染图表的 EPUB 电子书。
 
 ---
 
-## Start Mastering Claude Code Today
+## 现在开始掌握 Claude Code
 
-You already have Claude Code installed. The only thing between you and 10x productivity is knowing how to use it. This guide gives you the structured path, the visual explanations, and the copy-paste templates to get there.
+你已安装了 Claude Code。你与 10 倍生产力之间的距离，只是知道如何使用它。本指南为你提供结构化路径、可视化解释和即用型模板。
 
-MIT licensed. Free forever. Clone it, fork it, make it yours.
+MIT 许可证。永久免费。克隆它，fork 它，让它成为你的。
 
-**[Start the Learning Path ->](LEARNING-ROADMAP.md)** | **[Browse the Feature Catalog](CATALOG.md)** | **[Get Started in 15 Minutes](#-get-started-in-15-minutes)**
+**[开始学习路径 ->](LEARNING-ROADMAP.md)** | **[浏览功能目录](CATALOG.md)** | **[15 分钟入门](#-15-minutes-get-started)**
 
 ---
 
 <details>
-<summary>Quick Navigation — All Features</summary>
+<summary>快速导航 — 所有功能</summary>
 
-| Feature | Description | Folder |
+| 功能 | 描述 | 文件夹 |
 |---------|-------------|--------|
-| **Feature Catalog** | Complete reference with installation commands | [CATALOG.md](CATALOG.md) |
-| **Slash Commands** | User-invoked shortcuts | [01-slash-commands/](01-slash-commands/) |
-| **Memory** | Persistent context | [02-memory/](02-memory/) |
-| **Skills** | Reusable capabilities | [03-skills/](03-skills/) |
-| **Subagents** | Specialized AI assistants | [04-subagents/](04-subagents/) |
-| **MCP Protocol** | External tool access | [05-mcp/](05-mcp/) |
-| **Hooks** | Event-driven automation | [06-hooks/](06-hooks/) |
-| **Plugins** | Bundled features | [07-plugins/](07-plugins/) |
-| **Checkpoints** | Session snapshots & rewind | [08-checkpoints/](08-checkpoints/) |
-| **Advanced Features** | Planning, thinking, background tasks | [09-advanced-features/](09-advanced-features/) |
-| **CLI Reference** | Commands, flags, and options | [10-cli/](10-cli/) |
-| **Blog Posts** | Real-world usage examples | [Blog Posts](https://medium.com/@luongnv89) |
+| **功能目录** | 完整参考和安装命令 | [CATALOG.md](CATALOG.md) |
+| **Slash 命令** | 用户触发的快捷方式 | [01-slash-commands/](01-slash-commands/) |
+| **Memory** | 跨会话持久化上下文 | [02-memory/](02-memory/) |
+| **Skills** | 可复用能力 | [03-skills/](03-skills/) |
+| **Subagents** | 专业 AI 助手 | [04-subagents/](04-subagents/) |
+| **MCP 协议** | 外部工具访问 | [05-mcp/](05-mcp/) |
+| **Hooks** | 事件驱动自动化 | [06-hooks/](06-hooks/) |
+| **Plugins** | 功能捆绑包 | [07-plugins/](07-plugins/) |
+| **Checkpoints** | 会话快照和回退 | [08-checkpoints/](08-checkpoints/) |
+| **高级功能** | 规划、思考、后台任务 | [09-advanced-features/](09-advanced-features/) |
+| **CLI 参考** | 命令、标志和选项 | [10-cli/](10-cli/) |
+| **博客文章** | 真实使用例子 | [博客文章](https://medium.com/@luongnv89) |
 
 </details>
 
 <details>
-<summary>Feature Comparison</summary>
+<summary>功能对比</summary>
 
-| Feature | Invocation | Persistence | Best For |
+| 功能 | 调用方式 | 持久化 | 最佳用途 |
 |---------|-----------|------------|----------|
-| **Slash Commands** | Manual (`/cmd`) | Session only | Quick shortcuts |
-| **Memory** | Auto-loaded | Cross-session | Long-term learning |
-| **Skills** | Auto-invoked | Filesystem | Automated workflows |
-| **Subagents** | Auto-delegated | Isolated context | Task distribution |
-| **MCP Protocol** | Auto-queried | Real-time | Live data access |
-| **Hooks** | Event-triggered | Configured | Automation & validation |
-| **Plugins** | One command | All features | Complete solutions |
-| **Checkpoints** | Manual/Auto | Session-based | Safe experimentation |
-| **Planning Mode** | Manual/Auto | Plan phase | Complex implementations |
-| **Background Tasks** | Manual | Task duration | Long-running operations |
-| **CLI Reference** | Terminal commands | Session/Script | Automation & scripting |
+| **Slash 命令** | 手动（`/cmd`）| 仅当前会话 | 快速快捷方式 |
+| **Memory** | 自动加载 | 跨会话 | 长期学习 |
+| **Skills** | 自动触发 | 文件系统 | 自动化工作流 |
+| **Subagents** | 自动委托 | 隔离上下文 | 任务分发 |
+| **MCP 协议** | 自动查询 | 实时 | 实时数据访问 |
+| **Hooks** | 事件触发 | 配置 | 自动化和验证 |
+| **Plugins** | 单命令 | 全部功能 | 完整解决方案 |
+| **Checkpoints** | 手动/自动 | 基于会话 | 安全实验 |
+| **规划模式** | 手动/自动 | 规划阶段 | 复杂实现 |
+| **后台任务** | 手动 | 任务期间 | 长时间运行操作 |
+| **CLI 参考** | 终端命令 | 会话/脚本 | 自动化和脚本 |
 
 </details>
 
 <details>
-<summary>Installation Quick Reference</summary>
+<summary>安装快速参考</summary>
 
 ```bash
-# Slash Commands
+# Slash 命令
 cp 01-slash-commands/*.md .claude/commands/
 
 # Memory
@@ -287,174 +297,174 @@ chmod +x ~/.claude/hooks/*.sh
 # Plugins
 /plugin install pr-review
 
-# Checkpoints (auto-enabled, configure in settings)
-# See 08-checkpoints/README.md
+# Checkpoints（自动启用，可在设置中配置）
+# 详见 08-checkpoints/README.md
 
-# Advanced Features (configure in settings)
-# See 09-advanced-features/config-examples.json
+# 高级功能（在设置中配置）
+# 详见 09-advanced-features/config-examples.json
 
-# CLI Reference (no installation needed)
-# See 10-cli/README.md for usage examples
+# CLI 参考（无需安装）
+# 详见 10-cli/README.md 使用示例
 ```
 
 </details>
 
 <details>
-<summary>01. Slash Commands</summary>
+<summary>01. Slash 命令</summary>
 
-**Location**: [01-slash-commands/](01-slash-commands/)
+**位置**: [01-slash-commands/](01-slash-commands/)
 
-**What**: User-invoked shortcuts stored as Markdown files
+**是什么**: 存储为 Markdown 文件的用户触发快捷方式
 
-**Examples**:
-- `optimize.md` - Code optimization analysis
-- `pr.md` - Pull request preparation
-- `generate-api-docs.md` - API documentation generator
+**例子**:
+- `optimize.md` - 代码优化分析
+- `pr.md` - Pull request 准备
+- `generate-api-docs.md` - API 文档生成器
 
-**Installation**:
+**安装**:
 ```bash
 cp 01-slash-commands/*.md /path/to/project/.claude/commands/
 ```
 
-**Usage**:
+**使用**:
 ```
 /optimize
 /pr
 /generate-api-docs
 ```
 
-**Learn More**: [Discovering Claude Code Slash Commands](https://medium.com/@luongnv89/discovering-claude-code-slash-commands-cdc17f0dfb29)
+**了解更多**: [发现 Claude Code Slash 命令](https://medium.com/@luongnv89/discovering-claude-code-slash-commands-cdc17f0dfb29)
 
 </details>
 
 <details>
 <summary>02. Memory</summary>
 
-**Location**: [02-memory/](02-memory/)
+**位置**: [02-memory/](02-memory/)
 
-**What**: Persistent context across sessions
+**是什么**: 跨会话持久化上下文
 
-**Examples**:
-- `project-CLAUDE.md` - Team-wide project standards
-- `directory-api-CLAUDE.md` - Directory-specific rules
-- `personal-CLAUDE.md` - Personal preferences
+**例子**:
+- `project-CLAUDE.md` - 团队级项目标准
+- `directory-api-CLAUDE.md` - 目录级规则
+- `personal-CLAUDE.md` - 个人偏好
 
-**Installation**:
+**安装**:
 ```bash
-# Project memory
+# 项目 memory
 cp 02-memory/project-CLAUDE.md /path/to/project/CLAUDE.md
 
-# Directory memory
+# 目录 memory
 cp 02-memory/directory-api-CLAUDE.md /path/to/project/src/api/CLAUDE.md
 
-# Personal memory
+# 个人 memory
 cp 02-memory/personal-CLAUDE.md ~/.claude/CLAUDE.md
 ```
 
-**Usage**: Automatically loaded by Claude
+**使用**: 由 Claude 自动加载
 
 </details>
 
 <details>
 <summary>03. Skills</summary>
 
-**Location**: [03-skills/](03-skills/)
+**位置**: [03-skills/](03-skills/)
 
-**What**: Reusable, auto-invoked capabilities with instructions and scripts
+**是什么**: 带指令和脚本的可复用、自动触发能力
 
-**Examples**:
-- `code-review/` - Comprehensive code review with scripts
-- `brand-voice/` - Brand voice consistency checker
-- `doc-generator/` - API documentation generator
+**例子**:
+- `code-review/` - 带脚本的全面代码审查
+- `brand-voice/` - 品牌调性一致性检查
+- `doc-generator/` - API 文档生成器
 
-**Installation**:
+**安装**:
 ```bash
-# Personal skills
+# 个人 skills
 cp -r 03-skills/code-review ~/.claude/skills/
 
-# Project skills
+# 项目 skills
 cp -r 03-skills/code-review /path/to/project/.claude/skills/
 ```
 
-**Usage**: Automatically invoked when relevant
+**使用**: 相关时自动触发
 
 </details>
 
 <details>
 <summary>04. Subagents</summary>
 
-**Location**: [04-subagents/](04-subagents/)
+**位置**: [04-subagents/](04-subagents/)
 
-**What**: Specialized AI assistants with isolated contexts and custom prompts
+**是什么**: 带隔离上下文和自定义提示的专业 AI 助手
 
-**Examples**:
-- `code-reviewer.md` - Comprehensive code quality analysis
-- `test-engineer.md` - Test strategy and coverage
-- `documentation-writer.md` - Technical documentation
-- `secure-reviewer.md` - Security-focused review (read-only)
-- `implementation-agent.md` - Full feature implementation
+**例子**:
+- `code-reviewer.md` - 全面的代码质量分析
+- `test-engineer.md` - 测试策略和覆盖率
+- `documentation-writer.md` - 技术文档
+- `secure-reviewer.md` - 安全审查（只读）
+- `implementation-agent.md` - 完整功能实现
 
-**Installation**:
+**安装**:
 ```bash
 cp 04-subagents/*.md /path/to/project/.claude/agents/
 ```
 
-**Usage**: Automatically delegated by main agent
+**使用**: 由主 agent 自动委托
 
 </details>
 
 <details>
-<summary>05. MCP Protocol</summary>
+<summary>05. MCP 协议</summary>
 
-**Location**: [05-mcp/](05-mcp/)
+**位置**: [05-mcp/](05-mcp/)
 
-**What**: Model Context Protocol for accessing external tools and APIs
+**是什么**: Model Context Protocol，用于访问外部工具和 API
 
-**Examples**:
-- `github-mcp.json` - GitHub integration
-- `database-mcp.json` - Database queries
-- `filesystem-mcp.json` - File operations
-- `multi-mcp.json` - Multiple MCP servers
+**例子**:
+- `github-mcp.json` - GitHub 集成
+- `database-mcp.json` - 数据库查询
+- `filesystem-mcp.json` - 文件操作
+- `multi-mcp.json` - 多个 MCP 服务器
 
-**Installation**:
+**安装**:
 ```bash
-# Set environment variables
+# 设置环境变量
 export GITHUB_TOKEN="your_token"
 export DATABASE_URL="postgresql://..."
 
-# Add MCP server via CLI
+# 通过 CLI 添加 MCP 服务器
 claude mcp add github -- npx -y @modelcontextprotocol/server-github
 
-# Or add to project .mcp.json manually (see 05-mcp/ for examples)
+# 或手动添加到项目 .mcp.json（详见 05-mcp/）
 ```
 
-**Usage**: MCP tools are automatically available to Claude once configured
+**使用**: 配置后 MCP 工具自动对 Claude 可用
 
 </details>
 
 <details>
 <summary>06. Hooks</summary>
 
-**Location**: [06-hooks/](06-hooks/)
+**位置**: [06-hooks/](06-hooks/)
 
-**What**: Event-driven shell commands that execute automatically in response to Claude Code events
+**是什么**: 响应 Claude Code 事件自动执行的 shell 脚本
 
-**Examples**:
-- `format-code.sh` - Auto-format code before writing
-- `pre-commit.sh` - Run tests before commits
-- `security-scan.sh` - Scan for security issues
-- `log-bash.sh` - Log all bash commands
-- `validate-prompt.sh` - Validate user prompts
-- `notify-team.sh` - Send notifications on events
+**例子**:
+- `format-code.sh` - 写入前自动格式化代码
+- `pre-commit.sh` - 提交前运行测试
+- `security-scan.sh` - 扫描安全问题
+- `log-bash.sh` - 记录所有 bash 命令
+- `validate-prompt.sh` - 验证用户提示
+- `notify-team.sh` - 事件发生时发送通知
 
-**Installation**:
+**安装**:
 ```bash
 mkdir -p ~/.claude/hooks
 cp 06-hooks/*.sh ~/.claude/hooks/
 chmod +x ~/.claude/hooks/*.sh
 ```
 
-Configure hooks in `~/.claude/settings.json`:
+在 `~/.claude/settings.json` 中配置 hooks：
 ```json
 {
   "hooks": {
@@ -470,177 +480,177 @@ Configure hooks in `~/.claude/settings.json`:
 }
 ```
 
-**Usage**: Hooks execute automatically on events
+**使用**: Hooks 在事件发生时自动执行
 
-**Hook Types** (4 types, 25 events):
-- **Tool Hooks**: `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PermissionRequest`
-- **Session Hooks**: `SessionStart`, `SessionEnd`, `Stop`, `StopFailure`, `SubagentStart`, `SubagentStop`
-- **Task Hooks**: `UserPromptSubmit`, `TaskCompleted`, `TaskCreated`, `TeammateIdle`
-- **Lifecycle Hooks**: `ConfigChange`, `CwdChanged`, `FileChanged`, `PreCompact`, `PostCompact`, `WorktreeCreate`, `WorktreeRemove`, `Notification`, `InstructionsLoaded`, `Elicitation`, `ElicitationResult`
+**Hook 类型**（4 种，25 个事件）：
+- **Tool Hooks**: `PreToolUse`、`PostToolUse`、`PostToolUseFailure`、`PermissionRequest`
+- **Session Hooks**: `SessionStart`、`SessionEnd`、`Stop`、`StopFailure`、`SubagentStart`、`SubagentStop`
+- **Task Hooks**: `UserPromptSubmit`、`TaskCompleted`、`TaskCreated`、`TeammateIdle`
+- **Lifecycle Hooks**: `ConfigChange`、`CwdChanged`、`FileChanged`、`PreCompact`、`PostCompact`、`WorktreeCreate`、`WorktreeRemove`、`Notification`、`InstructionsLoaded`、`Elicitation`、`ElicitationResult`
 
 </details>
 
 <details>
 <summary>07. Plugins</summary>
 
-**Location**: [07-plugins/](07-plugins/)
+**位置**: [07-plugins/](07-plugins/)
 
-**What**: Bundled collections of commands, agents, MCP, and hooks
+**是什么**: 命令、agents、MCP 和 hooks 的捆绑集合
 
-**Examples**:
-- `pr-review/` - Complete PR review workflow
-- `devops-automation/` - Deployment and monitoring
-- `documentation/` - Documentation generation
+**例子**:
+- `pr-review/` - 完整 PR 审查工作流
+- `devops-automation/` - 部署和监控
+- `documentation/` - 文档生成
 
-**Installation**:
+**安装**:
 ```bash
 /plugin install pr-review
 /plugin install devops-automation
 /plugin install documentation
 ```
 
-**Usage**: Use bundled slash commands and features
+**使用**: 使用捆绑的 slash 命令和功能
 
 </details>
 
 <details>
-<summary>08. Checkpoints and Rewind</summary>
+<summary>08. Checkpoints 和 Rewind</summary>
 
-**Location**: [08-checkpoints/](08-checkpoints/)
+**位置**: [08-checkpoints/](08-checkpoints/)
 
-**What**: Save conversation state and rewind to previous points to explore different approaches
+**是什么**: 保存会话状态并回退到之前的点以探索不同方法
 
-**Key Concepts**:
-- **Checkpoint**: Snapshot of conversation state
-- **Rewind**: Return to previous checkpoint
-- **Branch Point**: Explore multiple approaches from same checkpoint
+**核心概念**:
+- **Checkpoint**: 会话状态的快照
+- **Rewind**: 返回之前的 checkpoint
+- **Branch Point**: 从同一 checkpoint 探索多种方法
 
-**Usage**:
+**使用**:
 ```
-# Checkpoints are created automatically with every user prompt
-# To rewind, press Esc twice or use:
+# Checkpoints 在每个用户 prompt 时自动创建
+# 要回退，按两次 Esc 或使用：
 /rewind
 
-# Then choose from five options:
-# 1. Restore code and conversation
-# 2. Restore conversation
-# 3. Restore code
-# 4. Summarize from here
-# 5. Never mind
+# 然后选择五个选项：
+# 1. 恢复代码和会话
+# 2. 恢复会话
+# 3. 恢复代码
+# 4. 从这里总结
+# 5. 算了
 ```
 
-**Use Cases**:
-- Try different implementation approaches
-- Recover from mistakes
-- Safe experimentation
-- Compare alternative solutions
-- A/B testing different designs
+**使用场景**:
+- 尝试不同的实现方法
+- 从错误中恢复
+- 安全实验
+- 比较替代方案
+- A/B 测试不同设计
 
 </details>
 
 <details>
-<summary>09. Advanced Features</summary>
+<summary>09. 高级功能</summary>
 
-**Location**: [09-advanced-features/](09-advanced-features/)
+**位置**: [09-advanced-features/](09-advanced-features/)
 
-**What**: Advanced capabilities for complex workflows and automation
+**是什么**: 用于复杂工作流和自动化的进阶能力
 
-**Includes**:
-- **Planning Mode** — Create detailed implementation plans before coding
-- **Extended Thinking** — Deep reasoning for complex problems (toggle with `Alt+T` / `Option+T`)
-- **Background Tasks** — Run long operations without blocking
-- **Permission Modes** — `default`, `acceptEdits`, `plan`, `dontAsk`, `bypassPermissions`
-- **Headless Mode** — Run Claude Code in CI/CD: `claude -p "Run tests and generate report"`
-- **Session Management** — `/resume`, `/rename`, `/fork`, `claude -c`, `claude -r`
-- **Configuration** — Customize behavior in `~/.claude/settings.json`
+**包含**:
+- **规划模式** — 编码前创建详细实现计划
+- **扩展思考** — 复杂问题的深度推理（用 `Alt+T` / `Option+T` 切换）
+- **后台任务** — 无阻塞运行长时间操作
+- **权限模式** — `default`、`acceptEdits`、`plan`、`dontAsk`、`bypassPermissions`
+- **无头模式** — 在 CI/CD 中运行 Claude Code：`claude -p "Run tests and generate report"`
+- **会话管理** — `/resume`、`/rename`、`/fork`、`claude -c`、`claude -r`
+- **配置** — 在 `~/.claude/settings.json` 中自定义行为
 
-See [config-examples.json](09-advanced-features/config-examples.json) for complete configurations.
+详见 [config-examples.json](09-advanced-features/config-examples.json) 的完整配置。
 
 </details>
 
 <details>
-<summary>10. CLI Reference</summary>
+<summary>10. CLI 参考</summary>
 
-**Location**: [10-cli/](10-cli/)
+**位置**: [10-cli/](10-cli/)
 
-**What**: Complete command-line interface reference for Claude Code
+**是什么**: Claude Code 的完整命令行参考
 
-**Quick Examples**:
+**快速示例**:
 ```bash
-# Interactive mode
+# 交互模式
 claude "explain this project"
 
-# Print mode (non-interactive)
+# 打印模式（非交互）
 claude -p "review this code"
 
-# Process file content
+# 处理文件内容
 cat error.log | claude -p "explain this error"
 
-# JSON output for scripts
+# 脚本的 JSON 输出
 claude -p --output-format json "list functions"
 
-# Resume session
+# 恢复会话
 claude -r "feature-auth" "continue implementation"
 ```
 
-**Use Cases**: CI/CD pipeline integration, script automation, batch processing, multi-session workflows, custom agent configurations
+**使用场景**: CI/CD 流水线集成、脚本自动化、批量处理、多会话工作流、自定义 agent 配置
 
 </details>
 
 <details>
-<summary>Example Workflows</summary>
+<summary>示例工作流</summary>
 
-### Complete Code Review Workflow
+### 完整代码审查工作流
 
 ```markdown
-# Uses: Slash Commands + Subagents + Memory + MCP
+# 使用: Slash Commands + Subagents + Memory + MCP
 
-User: /review-pr
+用户: /review-pr
 
 Claude:
-1. Loads project memory (coding standards)
-2. Fetches PR via GitHub MCP
-3. Delegates to code-reviewer subagent
-4. Delegates to test-engineer subagent
-5. Synthesizes findings
-6. Provides comprehensive review
+1. 加载项目 memory（编码标准）
+2. 通过 GitHub MCP 获取 PR
+3. 委托给 code-reviewer subagent
+4. 委托给 test-engineer subagent
+5. 综合发现
+6. 提供全面审查
 ```
 
-### Automated Documentation
+### 自动化文档
 
 ```markdown
-# Uses: Skills + Subagents + Memory
+# 使用: Skills + Subagents + Memory
 
-User: "Generate API documentation for the auth module"
+用户: "生成 auth 模块的 API 文档"
 
 Claude:
-1. Loads project memory (doc standards)
-2. Detects doc generation request
-3. Auto-invokes doc-generator skill
-4. Delegates to api-documenter subagent
-5. Creates comprehensive docs with examples
+1. 加载项目 memory（文档标准）
+2. 检测到文档生成请求
+3. 自动调用 doc-generator skill
+4. 委托给 api-documenter subagent
+5. 创建带示例的完整文档
 ```
 
-### DevOps Deployment
+### DevOps 部署
 
 ```markdown
-# Uses: Plugins + MCP + Hooks
+# 使用: Plugins + MCP + Hooks
 
-User: /deploy production
+用户: /deploy production
 
 Claude:
-1. Runs pre-deploy hook (validates environment)
-2. Delegates to deployment-specialist subagent
-3. Executes deployment via Kubernetes MCP
-4. Monitors progress
-5. Runs post-deploy hook (health checks)
-6. Reports status
+1. 运行预部署 hook（验证环境）
+2. 委托给部署专家 subagent
+3. 通过 Kubernetes MCP 执行部署
+4. 监控进度
+5. 运行后部署 hook（健康检查）
+6. 报告状态
 ```
 
 </details>
 
 <details>
-<summary>Directory Structure</summary>
+<summary>目录结构</summary>
 
 ```
 ├── 01-slash-commands/
@@ -700,176 +710,176 @@ Claude:
 │   └── README.md
 ├── 10-cli/
 │   └── README.md
-└── README.md (this file)
+└── README.md (本文件)
 ```
 
 </details>
 
 <details>
-<summary>Best Practices</summary>
+<summary>最佳实践</summary>
 
-### Do's
-- Start simple with slash commands
-- Add features incrementally
-- Use memory for team standards
-- Test configurations locally first
-- Document custom implementations
-- Version control project configurations
-- Share plugins with team
+### 应该做
+- 从简单的 slash 命令开始
+- 逐步添加功能
+- 用 memory 记录团队标准
+- 先在本地测试配置
+- 记录自定义实现
+- 版本控制项目配置
+- 与团队分享插件
 
-### Don'ts
-- Don't create redundant features
-- Don't hardcode credentials
-- Don't skip documentation
-- Don't over-complicate simple tasks
-- Don't ignore security best practices
-- Don't commit sensitive data
-
-</details>
-
-<details>
-<summary>Troubleshooting</summary>
-
-### Feature Not Loading
-1. Check file location and naming
-2. Verify YAML frontmatter syntax
-3. Check file permissions
-4. Review Claude Code version compatibility
-
-### MCP Connection Failed
-1. Verify environment variables
-2. Check MCP server installation
-3. Test credentials
-4. Review network connectivity
-
-### Subagent Not Delegating
-1. Check tool permissions
-2. Verify agent description clarity
-3. Review task complexity
-4. Test agent independently
+### 不应该做
+- 不要创建冗余功能
+- 不要硬编码凭证
+- 不要跳过文档
+- 不要把简单任务复杂化
+- 不要忽视安全最佳实践
+- 不要提交敏感数据
 
 </details>
 
 <details>
-<summary>Testing</summary>
+<summary>故障排除</summary>
 
-This project includes comprehensive automated testing:
+### 功能不加载
+1. 检查文件位置和命名
+2. 验证 YAML frontmatter 语法
+3. 检查文件权限
+4. 检查 Claude Code 版本兼容性
 
-- **Unit Tests**: Python tests using pytest (Python 3.10, 3.11, 3.12)
-- **Code Quality**: Linting and formatting with Ruff
-- **Security**: Vulnerability scanning with Bandit
-- **Type Checking**: Static type analysis with mypy
-- **Build Verification**: EPUB generation testing
-- **Coverage Tracking**: Codecov integration
+### MCP 连接失败
+1. 验证环境变量
+2. 检查 MCP 服务器安装
+3. 测试凭证
+4. 检查网络连接
+
+### Subagent 不委托
+1. 检查工具权限
+2. 验证 agent 描述清晰度
+3. 检查任务复杂度
+4. 独立测试 agent
+
+</details>
+
+<details>
+<summary>测试</summary>
+
+本项目包含全面的自动化测试：
+
+- **单元测试**: 使用 pytest 的 Python 测试（Python 3.10、3.11、3.12）
+- **代码质量**: 使用 Ruff 的 lint 和格式化
+- **安全**: 使用 Bandit 的漏洞扫描
+- **类型检查**: 使用 mypy 的静态类型分析
+- **构建验证**: EPUB 生成测试
+- **覆盖率跟踪**: Codecov 集成
 
 ```bash
-# Install development dependencies
+# 安装开发依赖
 uv pip install -r requirements-dev.txt
 
-# Run all unit tests
+# 运行所有单元测试
 pytest scripts/tests/ -v
 
-# Run tests with coverage report
+# 带覆盖率报告运行测试
 pytest scripts/tests/ -v --cov=scripts --cov-report=html
 
-# Run code quality checks
+# 运行代码质量检查
 ruff check scripts/
 ruff format --check scripts/
 
-# Run security scan
+# 运行安全扫描
 bandit -c pyproject.toml -r scripts/ --exclude scripts/tests/
 
-# Run type checking
+# 运行类型检查
 mypy scripts/ --ignore-missing-imports
 ```
 
-Tests run automatically on every push to `main`/`develop` and every PR to `main`. See [TESTING.md](.github/TESTING.md) for detailed information.
+测试在每次推送到 `main`/`develop` 和每个 PR 到 `main` 时自动运行。详见 [TESTING.md](.github/TESTING.md)。
 
 </details>
 
 <details>
-<summary>EPUB Generation</summary>
+<summary>EPUB 生成</summary>
 
-Want to read this guide offline? Generate an EPUB ebook:
+想离线阅读本指南？生成 EPUB 电子书：
 
 ```bash
 uv run scripts/build_epub.py
 ```
 
-This creates `claude-howto-guide.epub` with all content, including rendered Mermaid diagrams.
+这会创建 `claude-howto-guide.epub`，包含所有内容和渲染的 Mermaid 图表。
 
-See [scripts/README.md](scripts/README.md) for more options.
-
-</details>
-
-<details>
-<summary>Contributing</summary>
-
-Found an issue or want to contribute an example? We'd love your help!
-
-**Please read [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on:**
-- Types of contributions (examples, docs, features, bugs, feedback)
-- How to set up your development environment
-- Directory structure and how to add content
-- Writing guidelines and best practices
-- Commit and PR process
-
-**Our Community Standards:**
-- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) - How we treat each other
-- [SECURITY.md](SECURITY.md) - Security policy and vulnerability reporting
-
-### Reporting Security Issues
-
-If you discover a security vulnerability, please report it responsibly:
-
-1. **Use GitHub Private Vulnerability Reporting**: https://github.com/luongnv89/claude-howto/security/advisories
-2. **Or read** [.github/SECURITY_REPORTING.md](.github/SECURITY_REPORTING.md) for detailed instructions
-3. **Do NOT** open a public issue for security vulnerabilities
-
-Quick start:
-1. Fork and clone the repository
-2. Create a descriptive branch (`add/feature-name`, `fix/bug`, `docs/improvement`)
-3. Make your changes following the guidelines
-4. Submit a pull request with a clear description
-
-**Need help?** Open an issue or discussion, and we'll guide you through the process.
+详见 [scripts/README.md](scripts/README.md) 的更多选项。
 
 </details>
 
 <details>
-<summary>Additional Resources</summary>
+<summary>贡献</summary>
 
-- [Claude Code Documentation](https://code.claude.com/docs/en/overview)
-- [MCP Protocol Specification](https://modelcontextprotocol.io)
-- [Skills Repository](https://github.com/luongnv89/skills) - Collection of ready-to-use skills
-- [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook)
-- [Boris Cherny's Claude Code Workflow](https://x.com/bcherny/status/2007179832300581177) - The creator of Claude Code shares his systematized workflow: parallel agents, shared CLAUDE.md, Plan mode, slash commands, subagents, and verification hooks for autonomous long-running sessions.
+发现问题或想贡献例子？我们非常欢迎你的帮助！
+
+**请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解详细指南：**
+- 贡献类型（例子、文档、功能、bug、反馈）
+- 如何设置开发环境
+- 目录结构以及如何添加内容
+- 写作指南和最佳实践
+- 提交和 PR 流程
+
+**我们的社区标准：**
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) - 我们如何对待彼此
+- [SECURITY.md](SECURITY.md) - 安全政策和漏洞报告
+
+### 报告安全问题
+
+如果你发现安全漏洞，请负责任地报告：
+
+1. **使用 GitHub 私有漏洞报告**: https://github.com/luongnv89/claude-howto/security/advisories
+2. **或阅读** [.github/SECURITY_REPORTING.md](.github/SECURITY_REPORTING.md) 了解详细说明
+3. **不要** 为安全漏洞开公开 issue
+
+快速开始：
+1. Fork 并克隆仓库
+2. 创建描述性分支（`add/feature-name`、`fix/bug`、`docs/improvement`）
+3. 按照指南做修改
+4. 提交带有清晰描述的 pull request
+
+**需要帮助？** 开 issue 或 discussion，我们会引导你完成流程。
+
+</details>
+
+<details>
+<summary>更多资源</summary>
+
+- [Claude Code 文档](https://code.claude.com/docs/en/overview)
+- [MCP 协议规范](https://modelcontextprotocol.io)
+- [Skills 仓库](https://github.com/luongnv89/skills) - 即用型 skills 集合
+- [Anthropic  Cookbook](https://github.com/anthropics/anthropic-cookbook)
+- [Boris Cherny 的 Claude Code 工作流](https://x.com/bcherny/status/2007179832300581177) - Claude Code 创作者分享他的系统化工作流：并行 agents、共享 CLAUDE.md、Plan 模式、slash 命令、subagents 和自主长时间运行会话的验证 hooks。
 
 </details>
 
 ---
 
-## Contributing
+## 贡献
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on how to get started.
+我们欢迎贡献！请查看我们的[贡献指南](CONTRIBUTING.md)了解如何开始。
 
-## Contributors
+## 贡献者
 
-Thanks to everyone who has contributed to this project!
+感谢所有为本项目做出贡献的人！
 
-| Contributor | PRs |
+| 贡献者 | PRs |
 |-------------|-----|
 | [wjhrdy](https://github.com/wjhrdy) | [#1 - add a tool to create an epub](https://github.com/luongnv89/claude-howto/pull/1) |
 | [VikalpP](https://github.com/VikalpP) | [#7 - fix(docs): Use tilde fences for nested code blocks in concepts guide](https://github.com/luongnv89/claude-howto/pull/7) |
 
 ---
 
-## License
+## 许可证
 
-MIT License - see [LICENSE](LICENSE). Free to use, modify, and distribute. The only requirement is including the license notice.
+MIT 许可证 - 见 [LICENSE](LICENSE)。免费使用、修改和分发。唯一要求是包含许可证声明。
 
 ---
 
-**Last Updated**: March 2026
-**Claude Code Version**: 2.1+
-**Compatible Models**: Claude Sonnet 4.6, Claude Opus 4.6, Claude Haiku 4.5
+**最后更新**: 2026 年 3 月
+**Claude Code 版本**: 2.1+
+**兼容模型**: Claude Sonnet 4.6, Claude Opus 4.6, Claude Haiku 4.5
