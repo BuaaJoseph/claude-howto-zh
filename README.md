@@ -1,5 +1,15 @@
 # Claude How To 中文指南
 
+> 📢 **中文适配说明**
+> 
+> 本项目是基于 [luongnv89/claude-howto](https://github.com/luongnv89/claude-howto) 的中文翻译版本，针对中文用户做了本地化适配。
+> 
+> 原文项目采用 MIT 许可证，允许自由使用和分发。
+
+---
+
+**许可证**: MIT License - Copyright (c) 2024 luongnv89
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
   <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
