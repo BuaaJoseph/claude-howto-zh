@@ -1,13 +1,13 @@
 # Checkpoint Examples
 
-Real-world examples of using checkpoints effectively in Claude Code.
+在 Claude Code 中有效使用检查点的真实示例。
 
-Note: Checkpoints are created automatically with every user prompt. You do not need to manually save them. To rewind, press `Esc` twice (`Esc+Esc`) or use `/rewind` to open the checkpoint browser.
+注意：检查点会在每个用户提示时自动创建。你不需要手动保存它们。要回退，请按两次 `Esc`（`Esc+Esc`）或使用 `/rewind` 打开检查点浏览器。
 
 ## Example 1: Database Migration
 
 ### Scenario
-You need to migrate from MySQL to PostgreSQL but want to explore both a direct migration and a gradual dual-write approach.
+你需要从 MySQL 迁移到 PostgreSQL，但想同时探索直接迁移和渐进式双写方法。
 
 ### Workflow
 
@@ -43,7 +43,7 @@ User: The dual-write approach is clearly safer. Let's commit this.
 ## Example 2: Performance Optimization
 
 ### Scenario
-Multiple performance optimization strategies to try.
+有多种性能优化策略可以尝试。
 
 ### Workflow
 
@@ -99,7 +99,7 @@ User: Perfect! This is the winner. Let's commit this.
 ## Example 3: UI/UX Iteration
 
 ### Scenario
-Trying different layouts for a dashboard.
+尝试仪表板的不同布局。
 
 ### Workflow
 
@@ -148,7 +148,7 @@ User: Perfect! This is the final design.
 ## Example 4: Debugging Session
 
 ### Scenario
-Hunting down a tricky bug with multiple hypotheses.
+用多个假设来追踪一个棘手的 bug。
 
 ### Workflow
 
@@ -195,7 +195,7 @@ User: Excellent! Let's commit this fix.
 ## Example 5: API Design Evolution
 
 ### Scenario
-Designing a REST API with multiple iterations.
+用多次迭代设计 REST API。
 
 ### Workflow
 
@@ -229,7 +229,7 @@ User: Let's finalize the REST approach.
 ## Example 6: Configuration Management
 
 ### Scenario
-Testing different configuration approaches.
+测试不同的配置方法。
 
 ### Workflow
 
@@ -268,7 +268,7 @@ User: Perfect! This is production-ready.
 ## Example 7: Test Strategy
 
 ### Scenario
-Implementing comprehensive testing.
+实现全面测试。
 
 ### Workflow
 
@@ -312,7 +312,7 @@ User: Perfect balance of coverage and speed!
 ## Example 8: Using Summarize from Checkpoint
 
 ### Scenario
-After a long debugging session, you want to condense the conversation while preserving context.
+经过长时间的调试会话后，你希望在保留上下文的同时压缩对话。
 
 ### Workflow
 
@@ -331,9 +331,9 @@ User: Now let's continue with the approach that worked.
 
 ## Key Takeaways
 
-1. **Checkpoints are automatic**: Every user prompt creates a checkpoint -- no manual saving needed
-2. **Use Esc+Esc or /rewind**: These are the two ways to access the checkpoint browser
-3. **Choose the right restore option**: Restore code, conversation, both, or summarize depending on your needs
-4. **Don't fear experimentation**: Checkpoints make it safe to try radical changes
-5. **Combine with git**: Use checkpoints for exploration, git for finalized work
-6. **Summarize long sessions**: Use "Summarize from here" to keep conversations manageable
+1. **Checkpoints are automatic**: 每次用户提示都会创建检查点 —— 无需手动保存
+2. **Use Esc+Esc or /rewind**: 这两个方式可以访问检查点浏览器
+3. **Choose the right restore option**: 根据需要选择恢复代码、对话、两者或总结
+4. **Don't fear experimentation**: 检查点让尝试激进更改变得安全
+5. **Combine with git**: 将检查点用于探索，将 git 用于最终确定的工作
+6. **Summarize long sessions**: 使用"从这里总结"来保持对话可管理
