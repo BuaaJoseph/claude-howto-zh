@@ -649,7 +649,7 @@ Claude：[显示来自 bg-5002 的 linter 输出]
 export CLAUDE_CODE_DISABLE_CRON=1
 ```
 
-### 示例: monitoring a deployment
+### 示例：监控部署
 
 ```
 /loop 5m 检查预发布环境的部署状态。
@@ -676,7 +676,7 @@ export CLAUDE_CODE_DISABLE_CRON=1
 | `bypassPermissions` | 所有操作，无权限检查（危险）|
 | `dontAsk` | 仅执行预批准的工具；拒绝所有其他工具 |
 
-Cycle through modes with `Shift+Tab` in the CLI. Set a default with the `--permission-mode` flag or the `permissions.default模式` setting.
+使用 CLI 中的 `Shift+Tab` 循环切换模式。通过 `--permission-mode` 标志或 `permissions.default模式` 设置默认模式。
 
 ### 激活方法
 
@@ -705,7 +705,7 @@ claude --permission-mode auto
 }
 ```
 
-### Permission 模式 示例s
+### 权限模式示例
 
 #### Default 模式
 Claude 会询问重要操作的确认：
@@ -728,7 +728,7 @@ Claude：我需要修改 src/auth.ts 来修复 bug。
 Claude：我将为实现认证创建一个计划。
 
 ## 实施计划
-[详情ed plan with phases and steps]
+[包含阶段和步骤的详细计划]
 
 准备好继续了吗？（是/否/修改）
 ```
@@ -775,7 +775,7 @@ Claude：[自动接受文件编辑而不询问]
 
 打印模式（`claude -p`）允许 Claude Code 无需交互输入即可运行，非常适合自动化和 CI/CD。这是非交互模式，取代了旧的 `--headless` 标志。
 
-### What is Print 模式?
+### 什么是打印模式？
 
 打印模式启用：
 - 自动化脚本执行
@@ -783,7 +783,7 @@ Claude：[自动接受文件编辑而不询问]
 - 批处理
 - 计划任务
 
-### Running in Print 模式 (Non-Interactive)
+### 非交互式运行打印模式
 
 ```bash
 # 运行特定任务
@@ -797,7 +797,7 @@ cat error.log | claude -p "分析这些错误"
   run: claude -p "审查 PR"
 ```
 
-### Additional Print 模式 Usage 示例s
+### 更多打印模式使用示例
 
 ```bash
 # 运行特定任务并捕获输出
@@ -810,7 +810,7 @@ claude -p --output-format json "分析代码质量"
 echo "分析代码质量" | claude -p "解释这个"
 ```
 
-### 示例: CI/CD 集成
+### 示例：CI/CD 集成
 
 **GitHub 操作s**:
 ```yaml
@@ -880,7 +880,7 @@ claude -p --no-session-persistence "一次性分析"
 
 有效管理多个 Claude Code 会话。
 
-### 会话管理 Commands
+### 会话管理命令
 
 | Command | 描述 |
 |---------|-------------|
@@ -1016,7 +1016,7 @@ Claude Code 支持键盘快捷键以提高效率。 以下是官方文档的完�
 | **Tabs** | 选项卡切换和管理 |
 | **Help** | 帮助面板导航 |
 
-There are 18 contexts total including `Transcript`, `Task`, `ThemePicker`, `Attachments`, `Footer`, `MessageSelector`, `DiffDialog`, `ModelPicker`, and `Select`.
+共有 18 个上下文，包括 `Transcript`、`Task`、`ThemePicker`、`Attachments`、`Footer`、`MessageSelector`、`DiffDialog`、`ModelPicker` 和 `Select`。
 
 ### 和弦支持
 
@@ -1305,7 +1305,7 @@ claude remote-control --name "Auth Refactor"
 - **范围化凭据** — 多个短期、范围狭窄的令牌
 - **会话隔离** — 每个远程会话都是独立的
 
-### 远程控制 vs Claude Code on the web
+### 远程控制与网络上的 Claude Code 对比
 
 | 方面 | 远程控制 | 网络上的 Claude Code |
 |--------|---------------|-------------------|
@@ -1521,11 +1521,11 @@ claude -w
 }
 ```
 
-### Worktree 工具s and Hooks
+### 工作树工具和钩子
 
 | 项 | 描述 |
 |------|-------------|
-| `ExitWorktree` | 工具 to exit and clean up the current worktree |
+| `ExitWorktree` | 用于退出并清理当前工作树的工具 |
 | `WorktreeCreate` | 创建工作树时触发的事件钩子 |
 | `WorktreeRemove` | 删除工作树时触发的事件钩子 |
 
@@ -1570,7 +1570,7 @@ claude --no-sandbox    # 禁用沙盒模式
 | `sandbox.filesystem.denyRead` | 拒绝读取的路径 |
 | `sandbox.enableWeakerNetworkIsolation` | 在 macOS 上启用较弱网络隔离 |
 
-### 示例 Configuration
+### 示例配置
 
 ```json
 {
@@ -1604,7 +1604,7 @@ claude --no-sandbox    # 禁用沙盒模式
 
 ## 托管设置（企业）
 
-Managed Settings enable enterprise administrators to deploy Claude Code configuration across an organization using platform-native management tools.
+托管设置使企业管理员能够使用平台原生的管理工具跨组织部署 Claude Code 配置。
 
 ### 部署方法
 
@@ -1617,7 +1617,7 @@ Managed Settings enable enterprise administrators to deploy Claude Code configur
 
 ### 托管插件
 
-自 v2.1.83, administrators can deploy multiple managed settings files into a `managed-settings.d/` directory. Files are merged in alphabetical order, allowing modular configuration across teams:
+自 v2.1.83 起，管理员可以将多个托管设置文件部署到 `managed-settings.d/` 目录中。文件按字母顺序合并，允许跨团队进行模块化配置：
 
 ```
 ~/.claude/managed-settings.d/
@@ -1626,17 +1626,17 @@ Managed Settings enable enterprise administrators to deploy Claude Code configur
   20-project-overrides.json
 ```
 
-### Available Managed Settings
+### 可用的托管设置
 
 | 设置 | 描述 |
 |---------|-------------|
-| `disableBypassPermissions模式` | Prevent users from enabling bypass permissions |
-| `availableModels` | Restrict which models users can select |
+| `disableBypassPermissions模式` | 防止用户启用权限绕过 |
+| `availableModels` | 限制用户可以选择的模型 |
 | `allowedChannelPlugins` | 控制允许的频道插件 |
-| `auto模式.environment` | Configure trusted infrastructure for auto mode |
+| `auto模式.environment` | 为自动模式配置可信基础设施 |
 | 自定义策略 | 组织特定的权限和工具策略 |
 
-### 示例: macOS Plist
+### 示例：macOS Plist
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1659,13 +1659,13 @@ Managed Settings enable enterprise administrators to deploy Claude Code configur
 
 ## 配置和设置
 
-### 配置 File Locations
+### 配置 文件位置
 
 1. **全局配置**：`~/.claude/config.json`
 2. **项目配置**：`.claude/config.json`
 3. **用户配置**：`~/.config/claude-code/settings.json`
 
-### Complete Configuration 示例
+### 完整配置示例
 
 **核心高级功能配置：**
 
@@ -1774,7 +1774,7 @@ export ANTHROPIC_CUSTOM_MODEL_OPTION=my-custom-model
 export SLASH_COMMAND_TOOL_CHAR_BUDGET=50000
 ```
 
-### 配置 Management Commands
+### 配置管理命令
 
 ```
 用户：/config
@@ -1785,7 +1785,7 @@ export SLASH_COMMAND_TOOL_CHAR_BUDGET=50000
 - 扩展思考 开/关
 - 详细输出
 - 权限模式
-- Model selection
+- 模型选择
 
 ### 项目级配置
 
