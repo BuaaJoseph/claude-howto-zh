@@ -1,60 +1,30 @@
-# My Development Preferences
+# 我的开发偏好
 
-## About Me
-- **Experience Level**: 8 years full-stack development
-- **Preferred Languages**: TypeScript, Python
-- **Communication Style**: Direct, with examples
-- **Learning Style**: Visual diagrams with code
+## 关于我
+- **经验水平**：8 年全栈开发
+- **首选语言**：TypeScript、Python
+- **沟通风格**：直接，带示例
+- **学习风格**：图表结合代码
 
-## Code Preferences
+## 代码偏好
 
-### Error Handling
-I prefer explicit error handling with try-catch blocks and meaningful error messages.
-Avoid generic errors. Always log errors for debugging.
+### 错误处理
+我更喜欢使用 try-catch 块进行显式错误处理，并提供有意义的错误消息。
+避免通用错误。始终记录错误以便调试。
 
-### Comments
-Use comments for WHY, not WHAT. Code should be self-documenting.
-Comments should explain business logic or non-obvious decisions.
+### 注释
+代码应该自文档化，所以注释应该解释"为什么"，而不是"是什么"。
+注释应该解释业务逻辑或非显而易见的决策。
 
-### Testing
-I prefer TDD (test-driven development).
-Write tests first, then implementation.
-Focus on behavior, not implementation details.
+### 测试
+我更喜欢 TDD（测试驱动开发）。
+先写测试，再写实现。
+关注行为，而不是实现细节。
 
-### Architecture
-I prefer modular, loosely-coupled design.
-Use dependency injection for testability.
-Separate concerns (Controllers, Services, Repositories).
+### 架构
+我更喜欢模块化、松耦合的设计。
+使用依赖注入以提高可测试性。
+分离关注点（Controllers、Services、Repositories）。
 
-## Debugging Preferences
-- Use console.log with prefix: `[DEBUG]`
-- Include context: function name, relevant variables
-- Use stack traces when available
-- Always include timestamps in logs
-
-## Communication
-- Explain complex concepts with diagrams
-- Show concrete examples before explaining theory
-- Include before/after code snippets
-- Summarize key points at the end
-
-## Project Organization
-I organize my projects as:
-```
-project/
-  ├── src/
-  │   ├── api/
-  │   ├── services/
-  │   ├── models/
-  │   └── utils/
-  ├── tests/
-  ├── docs/
-  └── docker/
-```
-
-## Tooling
-- **IDE**: VS Code with vim keybindings
-- **Terminal**: Zsh with Oh-My-Zsh
-- **Format**: Prettier (100 char line length)
-- **Linter**: ESLint with airbnb config
-- **Test Framework**: Jest with React Testing Library
+## 调试偏好
+- 使用带前缀的 console.log：`[DEBUG]`
